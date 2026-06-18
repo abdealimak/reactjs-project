@@ -4,6 +4,13 @@
 
 Odyssey is a high-fidelity, role-based B2B SaaS prototype designed to modernize international border management. It simulates a complete, end-to-end customs clearance workflow, offering distinct dashboards for both local port inspectors and global logistics administrators.
 
+## 📸 Screenshots
+> **Note to Developer:** Take screenshots of your running app and place the images in your root directory or an `assets` folder, then update these markdown paths!
+
+- **The Interactive Landing Page:** `![Landing Page](./screenshot-landing.png)`
+- **The Role Switcher & Clearance Station:** `![Clearance Station](./screenshot-clearance.png)`
+- **Admin Threat Map & Route Optimizer:** `![Admin Console](./screenshot-admin.png)`
+
 ## 💻 Tech Stack & Dependencies
 
 Odyssey is built as a highly performant, client-side Single Page Application (SPA) utilizing a modern 2026 rendering stack.
@@ -111,8 +118,38 @@ odyssey/
 │           └── logos3.jsx            # Animated logo scroller
 ```
 
-## 🛠 Running Locally
-1. Clone the repository: `git clone https://github.com/abdealimak/reactjs-project.git`
-2. Navigate to project: `cd odyssey`
-3. Install dependencies: `npm install`
-4. Start dev server: `npm run dev`
+## 🛠 Setup Instructions & Running Locally
+
+Another developer should be able to spin this up in less than 2 minutes without any external help.
+
+**Prerequisites:**
+- Make sure you have [Node.js](https://nodejs.org/) installed (v18 or higher recommended).
+- Git installed on your machine.
+
+**Step-by-step Execution:**
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/abdealimak/reactjs-project.git
+   ```
+2. **Navigate into the project directory:**
+   ```bash
+   cd odyssey
+   ```
+3. **Install all dependencies:**
+   ```bash
+   npm install
+   ```
+   *(This will automatically download React, Vite, Three.js, Framer Motion, and all other required packages).*
+4. **Start the Vite development server:**
+   ```bash
+   npm run dev
+   ```
+5. **View the app:** Open your browser and go to the local port provided in your terminal (usually `http://localhost:5173`).
+
+## 🔮 What's Remaining (Future Scope)
+
+Currently, Odyssey is a high-fidelity frontend prototype running entirely on client-side state and mock data arrays. To make it a fully production-ready application, the following backend architecture must be implemented:
+
+1. **Backend Database Architecture:** Replace the `consoleData.js` mock arrays with a real relational database (like PostgreSQL) to permanently persist manifest edits, store the audit log, and save X-ray scan reports.
+2. **Authentication & Security:** Implement a real authentication provider (like Auth0 or NextAuth). The current interactive "Role Switcher" must be replaced with strict server-side validation that pulls user permissions directly from a secure JWT token.
+3. **Live Maritime API Integrations:** Hook the "AI Tariff Classifier" and the "Route Finder" directly into real-world supply chain and customs APIs (such as the WCO API for live HS code validation) instead of utilizing local mock pathfinding algorithms.
