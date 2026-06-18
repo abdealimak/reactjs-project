@@ -5,11 +5,15 @@
 Odyssey is a high-fidelity, role-based B2B SaaS prototype designed to modernize international border management. It simulates a complete, end-to-end customs clearance workflow, offering distinct dashboards for both local port inspectors and global logistics administrators.
 
 ## 📸 Screenshots
-> **Note to Developer:** Take screenshots of your running app and place the images in your root directory or an `assets` folder, then update these markdown paths!
 
-- **The Interactive Landing Page:** `![Landing Page](./screenshot-landing.png)`
-- **The Role Switcher & Clearance Station:** `![Clearance Station](./screenshot-clearance.png)`
-- **Admin Threat Map & Route Optimizer:** `![Admin Console](./screenshot-admin.png)`
+### The Interactive Landing Page
+![Landing Page](./public/screenshot-landing.png)
+
+### The Role Switcher & Clearance Station
+![Clearance Station](./public/screenshot-clearance.png)
+
+### Admin Threat Map & Route Optimizer
+![Admin Console](./public/screenshot-admin.png)
 
 ## 💻 Tech Stack & Dependencies
 
