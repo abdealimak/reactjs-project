@@ -434,7 +434,7 @@ body {
 .tab-btn { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1rem; border-radius: 8px; cursor: pointer; color: var(--primary-muted); font-size: 0.9rem; transition: all 0.2s; margin-bottom: 0.5rem; border: none; background: transparent; width: 100%; text-align: left; }
 .tab-btn:hover { background: rgba(255, 255, 255, 0.05); color: var(--primary); }
 .tab-btn.active { background: rgba(255, 255, 255, 0.1); color: var(--primary); font-weight: 600; }
-.console-display { padding: 2.5rem; background: #000; }
+.console-display { padding: 2.5rem; background: transparent; }
 .console-title { margin-bottom: 0.5rem; font-size: 1.75rem; }
 .console-description { color: var(--primary-muted); margin-bottom: 2rem; }
 .console-header { margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
