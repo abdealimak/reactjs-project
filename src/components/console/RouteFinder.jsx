@@ -57,7 +57,8 @@ export function RouteFinder({ posts }) {
         <button 
           onClick={handleFindRoute} 
           disabled={!destination}
-          className="btn-primary"
+          className="btn btn-primary"
+          style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}
         >
           <Zap size={16} /> Calculate Path
         </button>

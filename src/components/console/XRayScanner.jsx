@@ -73,9 +73,9 @@ export function XRayScanner() {
         />
         <button 
           onClick={handleScan}
-          className="btn-primary"
+          className="btn btn-primary"
           disabled={scanning || !containerId.trim()}
-          style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+          style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}
         >
           {scanning ? <Scan className="spinner" size={16} /> : <Camera size={16} />}
           {scanning ? 'Scanning...' : 'Scan'}

@@ -53,9 +53,11 @@ export function SecurityChecker() {
           />
           <button 
             onClick={handleVerify}
-            className="btn-primary"
+            className="btn btn-primary"
             disabled={scanning || !bolInput.trim()}
+            style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}
           >
+            {scanning ? <Loader2 className="spinner" size={16} /> : <ShieldCheck size={16} />}
             Verify Hash
           </button>
         </div>
