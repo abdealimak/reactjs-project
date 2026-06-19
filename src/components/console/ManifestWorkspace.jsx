@@ -10,7 +10,22 @@ const INITIAL_INVENTORY = [
 
 export function ManifestWorkspace() {
   const [inventory, setInventory] = useState(INITIAL_INVENTORY);
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState([
+    {
+      id: 1,
+      action: 'System: Blockchain Ledger Sync',
+      target: 'Nhava Sheva Port Authority',
+      timestamp: new Date(Date.now() - 3600000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'}),
+      prevState: INITIAL_INVENTORY
+    },
+    {
+      id: 2,
+      action: 'Auth: Identity Verified',
+      target: 'Insp. Sharma',
+      timestamp: new Date(Date.now() - 600000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'}),
+      prevState: INITIAL_INVENTORY
+    }
+  ]);
   const [sortDesc, setSortDesc] = useState(false);
 
   const handleSort = () => {
@@ -124,9 +139,11 @@ export function ManifestWorkspace() {
                   <strong>{log.action}</strong>
                   <span>{log.target} at {log.timestamp}</span>
                 </div>
-                <button className="btn-text" onClick={() => handleUndo(log.id)}>
-                  <RotateCcw size={14} /> Undo
-                </button>
+                {log.id > 10000 && (
+                  <button className="btn-text" onClick={() => handleUndo(log.id)}>
+                    <RotateCcw size={14} /> Undo
+                  </button>
+                )}
               </div>
             ))
           )}
