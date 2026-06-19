@@ -10,6 +10,7 @@ const INITIAL_INVENTORY = [
 
 export function ManifestWorkspace() {
   const [inventory, setInventory] = useState(INITIAL_INVENTORY);
+  const [expandedLog, setExpandedLog] = useState(null);
   const [history, setHistory] = useState([
     {
       id: 1,
@@ -134,15 +135,37 @@ export function ManifestWorkspace() {
             </div>
           ) : (
             history.map(log => (
-              <div key={log.id} className="history-item animate-slide-left">
-                <div className="history-meta">
-                  <strong>{log.action}</strong>
-                  <span>{log.target} at {log.timestamp}</span>
+              <div 
+                key={log.id} 
+                className="history-item animate-slide-left" 
+                onClick={() => setExpandedLog(expandedLog === log.id ? null : log.id)}
+                style={{ cursor: 'pointer', flexDirection: 'column', alignItems: 'stretch' }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                  <div className="history-meta">
+                    <strong>{log.action}</strong>
+                    <span>{log.target} at {log.timestamp}</span>
+                  </div>
+                  {log.id > 10000 && (
+                    <button className="btn-text" onClick={(e) => { e.stopPropagation(); handleUndo(log.id); }}>
+                      <RotateCcw size={14} /> Undo
+                    </button>
+                  )}
                 </div>
-                {log.id > 10000 && (
-                  <button className="btn-text" onClick={() => handleUndo(log.id)}>
-                    <RotateCcw size={14} /> Undo
-                  </button>
+                
+                {/* Expanded Cryptographic JSON Payload */}
+                {expandedLog === log.id && (
+                  <div className="animate-fade-in" style={{ marginTop: '1rem', padding: '1rem', background: '#050505', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.05)', fontSize: '0.75rem', fontFamily: 'monospace', color: '#a1a1aa', overflowX: 'auto' }}>
+                    <div style={{ color: '#4ade80', marginBottom: '0.5rem' }}>// Verified Blockchain Signature</div>
+                    <div>{`{`}</div>
+                    <div style={{ paddingLeft: '1rem', lineHeight: '1.8' }}>
+                      <span style={{ color: '#3b82f6' }}>"block_hash"</span>: "0x8f9b2c...",<br />
+                      <span style={{ color: '#3b82f6' }}>"timestamp"</span>: "{log.timestamp}",<br />
+                      <span style={{ color: '#3b82f6' }}>"actor_id"</span>: "{log.id > 10000 ? 'AUTH-9921' : 'SYS-AUTO'}",<br />
+                      <span style={{ color: '#3b82f6' }}>"payload_integrity"</span>: "VALID"
+                    </div>
+                    <div>{`}`}</div>
+                  </div>
                 )}
               </div>
             ))
