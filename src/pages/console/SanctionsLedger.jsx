@@ -1,12 +1,22 @@
-import { ShieldAlert, Search, Filter, Ban, AlertTriangle } from 'lucide-react';
+import React, { useState } from 'react';
+import { ShieldAlert, Search, Filter, Ban, AlertTriangle, ChevronRight, ChevronDown, FileText } from 'lucide-react';
 
 export default function SanctionsLedger() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [expandedEntity, setExpandedEntity] = useState(null);
+
   const blockedEntities = [
     { id: 'ENT-9921', name: 'Krasnovya Shipping Co.', origin: 'Eastern Bloc', reason: 'Arms Embargo', date: '2026-06-12', severity: 'danger' },
     { id: 'ENT-4012', name: 'Sovereign Logistics Ltd.', origin: 'Tax Haven Islands', reason: 'Money Laundering', date: '2026-06-15', severity: 'warning' },
     { id: 'ENT-8834', name: 'Oceanic Transit Shell', origin: 'Unknown', reason: 'Ghost Ship Protocol', date: '2026-06-17', severity: 'danger' },
     { id: 'ENT-1120', name: 'Global Tech Exporters', origin: 'Sanctioned Region', reason: 'Microchip Smuggling', date: '2026-06-18', severity: 'danger' },
   ];
+
+  const filteredEntities = blockedEntities.filter(e => 
+    e.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    e.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    e.reason.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="console-display tab-reveal">
@@ -22,7 +32,13 @@ export default function SanctionsLedger() {
 
       <div className="search-container" style={{ marginBottom: '2rem' }}>
         <Search size={18} />
-        <input type="text" className="search-input" placeholder="Query global entity database..." />
+        <input 
+          type="text" 
+          className="search-input" 
+          placeholder="Query global entity database..." 
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
       </div>
 
       <div className="security-card" style={{ marginBottom: '2rem', background: 'rgba(239, 68, 68, 0.05)', borderColor: 'rgba(239, 68, 68, 0.2)' }}>
@@ -48,24 +64,65 @@ export default function SanctionsLedger() {
             </tr>
           </thead>
           <tbody>
-            {blockedEntities.map(entity => (
-              <tr key={entity.id}>
-                <td style={{ fontFamily: 'monospace', color: 'var(--primary-muted)' }}>{entity.id}</td>
-                <td style={{ fontWeight: 600 }}>{entity.name}</td>
-                <td>{entity.origin}</td>
-                <td>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: entity.severity === 'danger' ? '#ef4444' : '#eab308' }}>
-                    {entity.severity === 'danger' ? <Ban size={14} /> : <AlertTriangle size={14} />}
-                    {entity.reason}
-                  </span>
-                </td>
-                <td style={{ color: 'var(--text-muted)' }}>{entity.date}</td>
-                <td>
-                  <span className={`status-pill ${entity.severity}`}>
-                    {entity.severity === 'danger' ? 'BLOCKED' : 'MONITORING'}
-                  </span>
+            {filteredEntities.length === 0 ? (
+              <tr>
+                <td colSpan="6" className="table-empty" style={{ padding: '3rem' }}>
+                  No entities found matching "{searchQuery}"
                 </td>
               </tr>
+            ) : filteredEntities.map(entity => (
+              <React.Fragment key={entity.id}>
+                <tr 
+                  onClick={() => setExpandedEntity(expandedEntity === entity.id ? null : entity.id)}
+                  style={{ cursor: 'pointer', transition: 'background 0.2s', background: expandedEntity === entity.id ? 'rgba(255,255,255,0.02)' : 'transparent' }}
+                  className="hover-row"
+                >
+                  <td style={{ fontFamily: 'monospace', color: 'var(--primary-muted)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      {expandedEntity === entity.id ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                      {entity.id}
+                    </div>
+                  </td>
+                  <td style={{ fontWeight: 600 }}>{entity.name}</td>
+                  <td>{entity.origin}</td>
+                  <td>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: entity.severity === 'danger' ? '#ef4444' : '#eab308' }}>
+                      {entity.severity === 'danger' ? <Ban size={14} /> : <AlertTriangle size={14} />}
+                      {entity.reason}
+                    </span>
+                  </td>
+                  <td style={{ color: 'var(--text-muted)' }}>{entity.date}</td>
+                  <td>
+                    <span className={`status-pill ${entity.severity}`}>
+                      {entity.severity === 'danger' ? 'BLOCKED' : 'MONITORING'}
+                    </span>
+                  </td>
+                </tr>
+                {expandedEntity === entity.id && (
+                  <tr>
+                    <td colSpan="6" style={{ padding: 0, borderBottom: '1px solid var(--border)' }}>
+                      <div className="animate-fade-in" style={{ padding: '1.5rem 2.5rem', background: '#050505', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+                        <div>
+                          <h4 style={{ color: 'var(--primary-muted)', marginBottom: '0.75rem', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Known Aliases & Shell Companies</h4>
+                          <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '0.85rem', color: '#a1a1aa' }}>
+                            <li style={{ padding: '0.25rem 0' }}>• {entity.name.split(' ')[0]} Holdings Group</li>
+                            <li style={{ padding: '0.25rem 0' }}>• Global {entity.origin} Trading Firm</li>
+                            <li style={{ padding: '0.25rem 0' }}>• Offshore Investments LLC</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 style={{ color: 'var(--primary-muted)', marginBottom: '0.75rem', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Recent Intercepted Cargo</h4>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', background: 'rgba(255,255,255,0.05)', padding: '0.75rem 1rem', borderRadius: '6px', fontSize: '0.85rem' }}>
+                            <FileText size={16} className={entity.severity === 'danger' ? 'text-red-400' : 'text-amber-400'} />
+                            <span>Manifest {entity.id.replace('ENT', 'MNF')} - Seized at Node 4</span>
+                            <button className="btn-mini btn-outline" style={{ marginLeft: 'auto', cursor: 'pointer' }}>View</button>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </React.Fragment>
             ))}
           </tbody>
         </table>
