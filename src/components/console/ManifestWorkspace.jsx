@@ -82,10 +82,10 @@ export function ManifestWorkspace() {
                 <tr key={item.id}>
                   <td><span className="mono-badge">{item.id}</span></td>
                   <td>{item.desc}</td>
-                  <td>${item.val.toLocaleString()}</td>
+                  <td>₹{item.val.toLocaleString('en-IN')}</td>
                   <td>{(item.rate * 100)}%</td>
                   <td className={`highlight-tax ${item.tax > 0 ? 'text-amber' : 'text-green'}`}>
-                    ${item.tax.toLocaleString()}
+                    ₹{item.tax.toLocaleString('en-IN')}
                   </td>
                   <td>
                     <button 

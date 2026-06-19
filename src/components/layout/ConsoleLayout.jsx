@@ -60,15 +60,15 @@ export default function ConsoleLayout() {
               onClick={() => handleRoleSwitch('inspector')} 
               className={`role-toggle-btn ${activeRole === 'inspector' ? 'active' : ''}`}
             >
-              <strong>Cmdr. Vance</strong>
-              <span>Local Inspector</span>
+              <strong>Insp. Sharma</strong>
+              <span>Customs Insp. (Nhava Sheva)</span>
             </button>
             <button 
               onClick={() => handleRoleSwitch('admin')} 
               className={`role-toggle-btn ${activeRole === 'admin' ? 'active' : ''}`}
             >
-              <strong>Dir. Chen</strong>
-              <span>Global Admin</span>
+              <strong>Comm. Verma</strong>
+              <span>Joint Commissioner (CBIC)</span>
             </button>
           </div>
           

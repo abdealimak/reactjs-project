@@ -1,18 +1,30 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FileText, ShieldAlert, ShieldCheck, Loader2 } from 'lucide-react';
 
 export function SecurityChecker() {
-  const [scanning, setScanning] = useState(true);
+  const [scanning, setScanning] = useState(false);
   const [discrepancy, setDiscrepancy] = useState(null);
+  const [verified, setVerified] = useState(false);
+  const [bolInput, setBolInput] = useState('');
 
-  useEffect(() => {
+  const handleVerify = () => {
+    if (!bolInput.trim()) return;
+    
+    setScanning(true);
+    setDiscrepancy(null);
+    setVerified(false);
+
     // Mock a 2.5s deep scan delay
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       setScanning(false);
-      setDiscrepancy("Mismatched cryptographic signatures detected on Origin Certificate.");
+      // If they type the known fraudulent document, fail it. Otherwise, pass.
+      if (bolInput.trim() === 'BoL-99824-A') {
+        setDiscrepancy("Mismatched cryptographic signatures detected on Origin Certificate.");
+      } else {
+        setVerified(true);
+      }
     }, 2500);
-    return () => clearTimeout(timer);
-  }, []);
+  };
 
   return (
     <div className="console-panel">
@@ -22,10 +34,36 @@ export function SecurityChecker() {
       </div>
 
       <div className="security-preview">
+        {/* Interactive Input Form */}
+        <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem', width: '100%' }}>
+          <input 
+            type="text" 
+            placeholder="Enter BoL (try BoL-99824-A)"
+            value={bolInput}
+            onChange={(e) => setBolInput(e.target.value)}
+            style={{ 
+              flex: 1, 
+              padding: '0.75rem', 
+              borderRadius: '8px', 
+              border: '1px solid rgba(255,255,255,0.1)', 
+              background: 'rgba(0,0,0,0.3)', 
+              color: 'white',
+              outline: 'none'
+            }}
+          />
+          <button 
+            onClick={handleVerify}
+            className="btn-primary"
+            disabled={scanning || !bolInput.trim()}
+          >
+            Verify Hash
+          </button>
+        </div>
+
         <div className="doc-preview">
           <FileText size={48} className="text-muted" />
           <div className="doc-meta">
-            <strong>BoL-99824-A.pdf</strong>
+            <strong>{bolInput || 'Awaiting Document...'}</strong>
             <span>Encrypted Ledger Payload</span>
           </div>
         </div>
@@ -44,13 +82,17 @@ export function SecurityChecker() {
                 <p>{discrepancy}</p>
               </div>
             </div>
-          ) : (
+          ) : verified ? (
             <div className="alert-box success">
               <ShieldCheck size={24} />
               <div>
                 <strong>Verified</strong>
                 <p>All digital signatures match ledger records.</p>
               </div>
+            </div>
+          ) : (
+            <div className="alert-box" style={{ background: 'transparent', border: '1px dashed rgba(255,255,255,0.1)', color: 'var(--text-muted)' }}>
+              <span>Enter a document number to begin verification.</span>
             </div>
           )}
         </div>
