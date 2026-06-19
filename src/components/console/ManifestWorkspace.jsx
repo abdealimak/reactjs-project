@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { ArrowUpDown, Edit3, RotateCcw, FileSignature } from 'lucide-react';
 
 const INITIAL_INVENTORY = [
-  { id: 'ITM-01', desc: 'Industrial Servers', val: 120000, rate: 0.05, tax: 6000 },
-  { id: 'ITM-02', desc: 'Office Furniture', val: 45000, rate: 0.10, tax: 4500 },
-  { id: 'ITM-03', desc: 'Medical Scanners', val: 350000, rate: 0, tax: 0 },
-  { id: 'ITM-04', desc: 'Luxury Vehicles', val: 180000, rate: 0.25, tax: 45000 },
+  { id: 'ITM-01', desc: 'Smartphones (CBU)', val: 500000, rate: 0.20, tax: 100000 },
+  { id: 'ITM-02', desc: 'Laptops (ITA-1 Compliant)', val: 300000, rate: 0, tax: 0 },
+  { id: 'ITM-03', desc: 'Gold Bullion', val: 1000000, rate: 0.15, tax: 150000 },
+  { id: 'ITM-04', desc: 'Luxury Vehicles (CBU)', val: 200000, rate: 1.00, tax: 200000 },
 ];
 
 export function ManifestWorkspace() {

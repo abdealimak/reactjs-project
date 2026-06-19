@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { Search, Info } from 'lucide-react';
 
 const HS_CODES = [
-  { code: '8517.12.00', desc: 'Telephones for cellular networks (Smartphones)', tax: '0%' },
-  { code: '9018.90.80', desc: 'Medical, surgical or veterinary instruments', tax: '0%' },
-  { code: '8703.23.10', desc: 'Vehicles, engine capacity > 1500cc', tax: '2.5%' },
-  { code: '8471.30.01', desc: 'Portable automatic data processing machines (Laptops)', tax: '0%' },
-  { code: '6109.10.00', desc: 'T-shirts, singlets and other vests, of cotton', tax: '16.5%' },
+  { code: '8517.13.00', desc: 'Smartphones (Telephones for cellular networks)', tax: '20%' },
+  { code: '8703.23.10', desc: 'Motor Vehicles (CBU), engine capacity > 1500cc', tax: '100%' },
+  { code: '8471.30.10', desc: 'Personal computers (Laptops, Notebooks)', tax: '0%' },
+  { code: '9018.90.99', desc: 'Medical, surgical or veterinary instruments', tax: '5%' },
+  { code: '7108.12.00', desc: 'Gold (including gold plated with platinum) non-monetary', tax: '15%' },
 ];
 
 export function TaxCodeFinder() {
