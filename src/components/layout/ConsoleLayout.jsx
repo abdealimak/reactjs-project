@@ -10,7 +10,7 @@ export default function ConsoleLayout() {
   const allNavItems = [
     { name: 'Control Tower', path: '/control-tower', icon: Globe, roles: ['admin'] },
     { name: 'Sanctions Ledger', path: '/sanctions-ledger', icon: ShieldAlert, roles: ['admin'] },
-    { name: 'Terminal Yard', path: '/terminal-yard', icon: Box, roles: ['admin', 'inspector'] },
+    { name: 'Terminal Yard', path: '/terminal-yard', icon: Box, roles: ['inspector'] },
     { name: 'Clearance Station', path: '/clearance-station', icon: FileCheck, roles: ['inspector'] },
   ];
 

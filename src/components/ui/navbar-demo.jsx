@@ -23,7 +23,7 @@ export function NavBarDemo() {
 
       {/* Top Right Console Button */}
       <div className="global-console-btn">
-        <Link to="/control-tower" className="btn btn-outline cta-console-mini">
+        <Link to="/clearance-station" className="btn btn-outline cta-console-mini">
           <Terminal size={14} /> Console
         </Link>
       </div>
