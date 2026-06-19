@@ -65,7 +65,7 @@ body {
 .nav-links a:hover { color: var(--primary); }
 
 /* Buttons */
-.btn { padding: 0.6rem 1.25rem; border-radius: 6px; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s; border: none; }
+.btn { padding: 0.6rem 1.25rem; border-radius: 6px; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s; border: none; text-decoration: none; }
 .btn-primary { background: var(--primary); color: var(--bg); }
 .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--primary); }
