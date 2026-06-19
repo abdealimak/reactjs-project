@@ -68,9 +68,9 @@ export function RouteFinder({ posts }) {
         <div className="route-result-card animate-fade-in">
           <div className="route-result-header">
             {routeResult.type === 'optimal' ? (
-              <Zap className="text-green-400" size={24} />
+              <Zap className="text-green" size={24} />
             ) : (
-              <AlertTriangle className="text-amber-400" size={24} />
+              <AlertTriangle className="text-amber" size={24} />
             )}
             <h4>Recommended Strategy</h4>
           </div>

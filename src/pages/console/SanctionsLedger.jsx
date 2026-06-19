@@ -146,7 +146,7 @@ AUTHORITY: GLOBAL CUSTOMS BLOCKCHAIN LEDGER
                         <div>
                           <h4 style={{ color: 'var(--primary-muted)', marginBottom: '0.75rem', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Recent Intercepted Cargo</h4>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', background: 'rgba(255,255,255,0.05)', padding: '0.75rem 1rem', borderRadius: '6px', fontSize: '0.85rem' }}>
-                            <FileText size={16} className={entity.severity === 'danger' ? 'text-red-400' : 'text-amber-400'} />
+                            <FileText size={16} className={entity.severity === 'danger' ? 'text-danger' : 'text-amber'} />
                             <span>Manifest {entity.id.replace('ENT', 'MNF')} - Seized at Node 4</span>
                             <button 
                               className="btn-mini btn-outline" 
