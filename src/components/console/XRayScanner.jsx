@@ -52,7 +52,7 @@ export function XRayScanner() {
     return () => stopCamera();
   }, []);
 
-  const isAnomaly = containerId.trim() === 'C-U49221-A';
+  const isAnomaly = containerId.trim() !== 'C-U49221-A';
 
   return (
     <div className="security-card" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', height: '100%', background: 'var(--surface)', border: '1px solid var(--border)' }}>

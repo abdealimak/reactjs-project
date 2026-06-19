@@ -17,11 +17,11 @@ export function SecurityChecker() {
     // Mock a 2.5s deep scan delay
     setTimeout(() => {
       setScanning(false);
-      // If they type the known fraudulent document, fail it. Otherwise, pass.
+      // If they type the exact document, pass. Otherwise, fail.
       if (bolInput.trim() === 'BoL-99824-A') {
-        setDiscrepancy("Mismatched cryptographic signatures detected on Origin Certificate.");
-      } else {
         setVerified(true);
+      } else {
+        setDiscrepancy("Mismatched cryptographic signatures detected on Origin Certificate.");
       }
     }, 2500);
   };
